@@ -4,5 +4,5 @@ WordCounter is a program which counts the words in a .txt files and can sort the
 ## To-do list
 - Fix so that user can choose which files to analyze
 
-### Author
+## Author
 Johan Wulf
