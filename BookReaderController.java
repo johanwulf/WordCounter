@@ -14,6 +14,7 @@ import java.util.Map.Entry;
 public class BookReaderController {
     private SortedListModel listModel;
     private JList<SortedListModel> listView;
+    JScrollPane scrollPane;
 
     public BookReaderController() {
         SwingUtilities.invokeLater(() -> createWindow("BookReader", 1000, 500));
@@ -27,8 +28,7 @@ public class BookReaderController {
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JScrollPane scrollPane = new JScrollPane(listView, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-        JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane = new JScrollPane(listView, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setPreferredSize(new Dimension(width, height));
 
         pane.add(scrollPane, BorderLayout.NORTH);
@@ -43,7 +43,10 @@ public class BookReaderController {
         listModel = new SortedListModel(counter.getWordList());
         listView = new JList<SortedListModel>(listModel);
         listView.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        SwingUtilities.updateComponentTreeUI(frame);
+        listView.revalidate();
+        listView.repaint();
+        scrollPane.revalidate();
+        scrollPane.repaint();
     }
 
     private JPanel createRadioButtons() {
