@@ -14,39 +14,41 @@ import java.util.Map.Entry;
 public class BookReaderController {
     private SortedListModel listModel;
     private JList<SortedListModel> listView;
+
     JScrollPane scrollPane;
+    JFrame frame;
+    Container pane;
 
     public BookReaderController() {
         SwingUtilities.invokeLater(() -> createWindow("BookReader", 1000, 500));
     }
 
     private void createWindow(String title, int width, int height) {
-        // createLists(counter);
 
-        JFrame frame = new JFrame(title);
-        Container pane = frame.getContentPane();
+        frame = new JFrame(title);
+        pane = frame.getContentPane();
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        scrollPane = new JScrollPane(listView, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollPane.setPreferredSize(new Dimension(width, height));
-
-        pane.add(scrollPane, BorderLayout.NORTH);
+        
         pane.add(createRadioButtons(), BorderLayout.CENTER);
         pane.add(createSearchField(frame), BorderLayout.SOUTH);
+        
 
         frame.pack();
         frame.setVisible(true);
     }
 
     private void createLists(GeneralWordCounter counter, JFrame frame) {
+        frame.setVisible(false);
         listModel = new SortedListModel(counter.getWordList());
         listView = new JList<SortedListModel>(listModel);
         listView.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        scrollPane = new JScrollPane(listView, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setPreferredSize(new Dimension(1000, 500));
+        pane.add(scrollPane, BorderLayout.NORTH);
+
         listView.revalidate();
-        listView.repaint();
-        scrollPane.revalidate();
-        scrollPane.repaint();
     }
 
     private JPanel createRadioButtons() {
