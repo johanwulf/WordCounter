@@ -126,33 +126,5 @@ public class BookReaderController {
 
         return searchPanel;
     }
-
-    // todo fix this >:()
-    private void createWordCounters(String textFile, String bannedFile, JFrame frame) throws FileNotFoundException {
-        Scanner s = new Scanner(new File(textFile));
-		Scanner s2 = new Scanner(new File(bannedFile));
-
-		Set<String> banned = new HashSet<String>();
-		
-		while(s2.hasNext()) {
-			String word = s2.next().toLowerCase();		
-            banned.add(word);
-		}
-		
-		GeneralWordCounter wordCount = new GeneralWordCounter(banned);
-		
-		s.findWithinHorizon("\uFEFF", 1);
-		s.useDelimiter("(\\s|,|\\.|:|;|!|\\?|'|\\\")+");
-
-		while (s.hasNext()) {
-			String word = s.next().toLowerCase();	
-            wordCount.process(word);
-		}
-
-		s.close();
-        s2.close();
-        
-        createLists(wordCount, frame);
-    }
 }
 
