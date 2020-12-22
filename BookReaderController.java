@@ -39,7 +39,7 @@ public class BookReaderController {
     }
 
     private void createLists(GeneralWordCounter counter, JFrame frame) {
-        frame.setVisible(false);
+        
         listModel = new SortedListModel(counter.getWordList());
         listView = new JList<SortedListModel>(listModel);
         listView.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -127,6 +127,7 @@ public class BookReaderController {
         return searchPanel;
     }
 
+    // todo fix this >:()
     private void createWordCounters(String textFile, String bannedFile, JFrame frame) throws FileNotFoundException {
         Scanner s = new Scanner(new File(textFile));
 		Scanner s2 = new Scanner(new File(bannedFile));
