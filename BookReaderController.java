@@ -23,6 +23,8 @@ public class BookReaderController {
         SwingUtilities.invokeLater(() -> createWindow("BookReader", 1000, 500));
     }
 
+
+    // Maybe this method?
     private void createWindow(String title, int width, int height) {
 
         frame = new JFrame(title);
