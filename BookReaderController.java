@@ -343,3 +343,86 @@ public class MapSparseVector implements SparseVector {
         return sum;
     }
 }
+
+// 3b) hashCode används för att hitta index för det vi vill sätta in. Equals används för att kolla nycklarna
+// 3c) TreeMap
+
+public void printBiggerThan(E x) {
+    recPrint(x, root);
+}
+
+private void recPrint(E x, Node<E> n) {
+    if(n != null) {
+
+    }
+}
+
+/**
+ * 1a) En generisk klass är en klass som inte har en typ. Dessa används för att metoder ska kunna användas av flera olika typer (t.ex. string och integer).
+ * 1b) Ja, trädet är balanserat.
+ * 1c) Rehashing innebär att man gör om hashtabellen så att den blir dubbel så stor. Detta görs för att dra ner på antalet kollisioner i tabellen. 10 -> 20 i storlek t.ex.
+ * 1d) Det minsta elementet i minheapen är noden. När denna tas bort så ersätts den med det senast insatta elementet som "bubblas ner" till trädet är balanserat igen
+ * 1e) Valet av pivotelement är viktigt så att man inte sorterar om i onödan. Om man t.ex. väljer första elementet som pivotelement måste man kolla genom alla platser i vektorn
+ */
+
+// 2a)
+public void deleteDuplicates() {
+    ListNode<E> current = first;
+    ListNode<E> previous = null;
+
+    while(current != null) {
+        previous = current;
+        current = current.next;
+
+        if(previous.element.compareTo(current.element) == 0) {
+            previous.next = current.next;
+        }
+    }
+}
+
+// 2b) Man hade behövt jämföra varje element mot varje element, vilket innebär att vi hade fått en tidskomplexitet n^2. Värstafallet inträffar när de lika elementen är på motsatta ändar av lsitan.
+// 2c)
+public E middleVal() {
+    ListNode<E> middle = first;
+    ListNode<E> end = first;
+
+    while(end.next != null) {
+        end = end.next.next;
+        middle = middle.next;
+    }
+
+    return middle.element;
+}
+
+// 3a)
+public int getWeight() {
+    return recGetWeight(root);
+}
+
+private int recGetWeight(Node n) {
+    if(n == null) {
+        return 0;
+    } else if (n.left == null && n.right == null) {
+        return n.data;
+    } else {
+        int weight = 0;
+        weight += recGetWeight(n.left);
+        weight += recGetWeight(n.right);
+
+        return weight;
+    }
+}
+
+// 3b)
+public boolean mobileTree() {
+    if (root == null || (root.left == null && root.right == null)) {
+        return true;
+    }
+
+    int leftWeight = recGetWeight(n.left);
+    int rightWeight = recGetWeight(n.right);
+
+    return leftWeight == rightWeight;
+}
+
+// 4a)
