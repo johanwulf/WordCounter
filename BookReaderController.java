@@ -139,7 +139,8 @@ public class BookReaderController {
 		s.useDelimiter("(\\s|,|\\.|:|;|!|\\?|'|\\\")+");
 
 		while (s.hasNext()) {
-			String word = s.next().toLowerCase();	
+			String word = s.next().toLowerCase();
+            System.out.println(word);	
             wordCount.process(word);
 		}
 

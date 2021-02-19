@@ -26,20 +26,6 @@ public class GeneralWordCounter {
 	}
 
 	/*
-	 * Prints a line with the key and value for each entry in the TreeMap
-	 */
-	public void report() {
-		Set<Map.Entry<String, Integer>> wordSet = map.entrySet();
-		List<Map.Entry<String, Integer>> wordList = new ArrayList<>(wordSet);
-		
-		wordList.sort(new WordCountComparator());
-		
-		for(int i = 0; i < 5; i++) {
-			System.out.println(wordList.get(i));
-		}
-	}
-
-	/*
 	 * Returns wordList
 	 */
 	public List<Map.Entry<String, Integer>> getWordList() {
